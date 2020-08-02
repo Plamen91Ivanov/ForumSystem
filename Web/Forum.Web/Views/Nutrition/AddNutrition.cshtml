@@ -1,0 +1,25 @@
+﻿@model Forum.Web.ViewModels.Nutrition.NutritionVIewModel
+
+<form method="post" asp-action="AddNutrition">
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name" class="form-control" />
+
+    <label asp-for="Kcal"></label>
+    <input asp-for="Kcal" class="form-control" />
+
+    <label asp-for="Carbohydrate"></label>
+    <input asp-for="Carbohydrate" class="form-control" />
+
+    <label asp-for="Proteins"></label>
+    <input asp-for="Proteins" class="form-control" />
+
+    <label asp-for="Fat"></label>
+    <input asp-for="Fat" class="form-control" />
+
+    <label asp-for="VitaminA"></label>
+    <input asp-for="VitaminA" class="form-control" />
+    <hr />
+    <input type="submit" class="btn btn-primary" />
+
+</form>

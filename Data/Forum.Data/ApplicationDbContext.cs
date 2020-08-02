@@ -8,7 +8,7 @@
 
     using Forum.Data.Common.Models;
     using Forum.Data.Models;
-
+    using Forum.Data.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
@@ -31,6 +31,12 @@
         public DbSet<Comment> Comments { get; set; }
 
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<TestNumberOne> TestNumberOnes { get; set; }
+
+        public DbSet<TestNumberTwo> TestNumberTwos { get; set; }
+
+        public DbSet<Nutrition> Nutritions { get; set; }
 
         public override int SaveChanges() => this.SaveChanges(true);
 

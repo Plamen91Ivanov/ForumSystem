@@ -1,16 +1,35 @@
 ﻿namespace Forum.Web.Controllers
 {
+    using System.Collections.Generic;
     using System.Diagnostics;
+    using System.Linq;
 
+    using Forum.Data;
+    using Forum.Data.Common.Repositories;
+    using Forum.Data.Models;
+    using Forum.Services.Data;
     using Forum.Web.ViewModels;
-
+    using Forum.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore.Internal;
 
     public class HomeController : BaseController
     {
+        private readonly ICategoryService categoryService;
+
+        public HomeController(ICategoryService categoryService)
+        {
+            this.categoryService = categoryService;
+        }
+
         public IActionResult Index()
         {
-            return this.View();
+            var viewModel = new IndexViewModel
+            {
+                Categories =
+                    this.categoryService.GetAll<IndexCategoryViewModel>()
+            };
+            return this.View(viewModel);
         }
 
         public IActionResult Privacy()
