@@ -3,7 +3,7 @@
     using System.Collections.Generic;
     using System.Diagnostics;
     using System.Linq;
-
+    using System.Threading.Tasks;
     using Forum.Data;
     using Forum.Data.Common.Repositories;
     using Forum.Data.Models;
@@ -11,24 +11,40 @@
     using Forum.Web.ViewModels;
     using Forum.Web.ViewModels.Home;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Internal;
 
     public class HomeController : BaseController
     {
         private readonly ICategoryService categoryService;
+        private readonly ApplicationDbContext db;
 
-        public HomeController(ICategoryService categoryService)
+        public HomeController(
+            ICategoryService categoryService,
+            ApplicationDbContext db)
         {
             this.categoryService = categoryService;
+            this.db = db;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string search)
         {
-            var viewModel = new IndexViewModel
+            if (!string.IsNullOrEmpty(search))
             {
-                Categories =
-                    this.categoryService.GetAll<IndexCategoryViewModel>()
-            };
+                var foundCategory = new IndexViewModel
+                {
+                   Categories = this.categoryService.SearchCategory<IndexCategoryViewModel>(search),
+                };
+
+                return this.View(foundCategory);
+
+            }
+
+            var viewModel = new IndexViewModel
+             {
+              Categories =
+              this.categoryService.GetAll<IndexCategoryViewModel>(),
+             };
             return this.View(viewModel);
         }
 

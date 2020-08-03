@@ -11,5 +11,7 @@
         public IEnumerable<IndexNumberOneViewModel> TestNumberOnes { get; set; }
 
         public IEnumerable<IndexNumberTwoViewModel> TestNumberTwos { get; set; }
+
+        public string SearchTerm { get; set; }
     }
 }
