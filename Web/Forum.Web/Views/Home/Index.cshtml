@@ -120,3 +120,23 @@
     </div>
     <button class="btn btn-primary btn-purchase" type="button">PURCHASE</button>
 </section>
+<script>
+    $(document).ready(function () {
+        function Contains(text_one, text_two) {
+            if (text_one.indexOf(text_two) != -1) {
+                return true;
+            }
+        }
+        $("#searching").keyup(function () {
+            var searchText = $("#searching").val().toLowerCase();
+            $(".searching").each(function () {
+                if (!Contains($(this).text().toLowerCase(), searchText)) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            });
+        });
+    });
+</script>
