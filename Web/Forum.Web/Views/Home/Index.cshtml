@@ -364,3 +364,16 @@
         });
     });
 </script>
+<script>
+    const portfolioItems = document.querySelectorAll('.portfolio-item-wrapper')
+
+    portfolioItems.forEach(p => {
+        p.addEventListener('mouseover', () => {
+            console.log(p.childNodes[1].classList)
+            p.childNodes[1].classList.add('image-blur');
+        })
+        p.addEventListener('mouseout', () => {
+            p.childNodes[1].classList.remove('image-blur')
+        })
+    })
+</script>
